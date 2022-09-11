@@ -1,0 +1,10 @@
+[submodule "spoon"]
+	path = tui/spoon
+  url = https://git.sr.ht/~leon_plickat/zig-spoon
+  shallow = true
+[submodule "portmidi"]
+	path = router/portmidi-zig
+	url = https://github.com/DivergentClouds/portmidi-zig
+[submodule "portmidi-cpp"]
+	path = router/portmidi-c
+	url = https://github.com/PortMidi/portmidi
