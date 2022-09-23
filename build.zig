@@ -4,22 +4,23 @@ const flags = [_][]const u8{};
 
 pub fn build(b: *std.build.Builder) void {
     const target = b.standardTargetOptions(.{});
-    const mode   = b.standardReleaseOptions();
-    const exe    = b.addExecutable("midichka", "main.zig");
+    const mode = b.standardReleaseOptions();
+    const exe = b.addExecutable("midichka", "midichka.zig");
     exe.setTarget(target);
     exe.setBuildMode(mode);
     exe.linkSystemLibrary("asound");
     exe.linkLibC();
-    exe.addIncludeDir("router/portmidi-c/porttime");
-    exe.addIncludeDir("router/portmidi-c/pm_common");
-    exe.addIncludeDir("router/portmidi-zig/src/include");
-    exe.addCSourceFile("router/portmidi-c/porttime/ptlinux.c",     &flags);
-    exe.addCSourceFile("router/portmidi-c/pm_common/pmutil.c",     &flags);
-    exe.addCSourceFile("router/portmidi-c/pm_common/portmidi.c",   &flags);
+    exe.addIncludeDir("portmidi-c/porttime");
+    exe.addIncludeDir("portmidi-c/pm_common");
+    exe.addIncludeDir("portmidi-zig/src/include");
+    exe.addIncludeDir("porttime-zig/src/include");
+    exe.addCSourceFile("portmidi-c/porttime/ptlinux.c", &flags);
+    exe.addCSourceFile("portmidi-c/pm_common/pmutil.c", &flags);
+    exe.addCSourceFile("portmidi-c/pm_common/portmidi.c", &flags);
     exe.defineCMacroRaw("PMALSA");
-    exe.addCSourceFile("router/portmidi-c/pm_linux/pmlinux.c",     &flags);
-    exe.addCSourceFile("router/portmidi-c/pm_linux/pmlinuxalsa.c", &flags);
-    exe.addCSourceFile("router/portmidi-c/pm_linux/finddefault.c", &flags);
+    exe.addCSourceFile("portmidi-c/pm_linux/pmlinux.c", &flags);
+    exe.addCSourceFile("portmidi-c/pm_linux/pmlinuxalsa.c", &flags);
+    exe.addCSourceFile("portmidi-c/pm_linux/finddefault.c", &flags);
     exe.install();
 }
 
