@@ -14,3 +14,5 @@
   * [ ] Save
   * [ ] Load
 * [ ] On-line help
+* [ ] Clock master/follower
+  * [ ] Beat counter - https://www.clear.rice.edu/elec301/Projects01/beat_sync/beatalgo.html etc
